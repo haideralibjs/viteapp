@@ -71,5 +71,5 @@ jobs:
               nvm use 23
 
               cd ${{ env.DEPLOY_PATH }}
-              npm run dev
+              npx vite
             '
