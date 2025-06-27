@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js  
         uses: actions/setup-node@v2  
         with:  
-          node-version: 18
+          node-version: 23
       - name: Install dependencies  
         run: npm install  
 
@@ -67,5 +67,7 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
             cd ${{ env.DEPLOY_PATH }} 
-  
+            nvm install 23
+            nvm use 23
+            npm install -g pm2
             pm2 reload dist/main.js --name blog-api || pm2 start dist/main.js --name blog-api
