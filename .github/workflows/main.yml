@@ -56,21 +56,23 @@ jobs:
           overwrite: true  
 
 
-      - name: Setup and run application  
-        uses: appleboy/ssh-action@master  
-        with:  
-          host: ${{ secrets.EC2_HOST }}  
-          username: ${{ secrets.EC2_USERNAME }}  
-          key: ${{ secrets.EC2_PRIVATE_KEY }}  
+      - name: Setup and run application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             bash -lc '
-            export NVM_DIR="/home/${{ secrets.EC2_USERNAME }}/.nvm"  
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
-            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
-            cd ${{ env.DEPLOY_PATH }} 
-            source ~/.bashrc
-            nvm install 23
-            nvm use 23
-            npm install -g pm2
-            pm2 reload dist/main.js --name blog-api || pm2 start dist/main.js --name blog-api
+              export NVM_DIR="$HOME/.nvm"
+              [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+              nvm install 23
+              nvm use 23
+
+              cd ${{ env.DEPLOY_PATH }}
+
+              npm install -g pm2
+              pm2 reload dist/main.js --name blog-api || pm2 start dist/main.js --name blog-api
+              pm2 save
             '
