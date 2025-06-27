@@ -67,6 +67,7 @@ jobs:
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
             [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
             cd ${{ env.DEPLOY_PATH }} 
+            source ~/.bashrc
             nvm install 23
             nvm use 23
             npm install -g pm2
