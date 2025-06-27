@@ -71,8 +71,5 @@ jobs:
               nvm use 23
 
               cd ${{ env.DEPLOY_PATH }}
-
-              npm install -g pm2
-              pm2 reload dist/main.js --name blog-api || pm2 start dist/main.js --name blog-api
-              pm2 save
+              npm run dev
             '
