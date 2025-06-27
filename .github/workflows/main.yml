@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  DEPLOY_PATH: /var/www/blog-api
+  DEPLOY_PATH: /var/www/app
 
 jobs:  
   deploy:  
@@ -68,4 +68,6 @@ jobs:
               [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
               [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
               nvm install v23
+              cd ${{DEPLOY_PATH}}
+              npm run dev
               
