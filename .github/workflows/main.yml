@@ -5,7 +5,7 @@ on:
       - main
 
 env:
-  DEPLOY_PATH: /var/www/app
+  DEPLOY_PATH: /var/www/blog-api
 
 jobs:  
   deploy:  
