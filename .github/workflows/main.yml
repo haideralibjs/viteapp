@@ -70,8 +70,9 @@ jobs:
               nvm install v23
               cd ${{ env.DEPLOY_PATH }}
               npm run build > /dev/null
-              npm install -g serve
-              npm install -g serve pm2
+              cd dist
+              ls -la
+              npm install -g serve pm2  > /dev/null
               pm2 delete vite-app || true  
-              pm2 start serve --name vite-app -- -s dist -l 3000 -n 0.0.0.0
+              pm2 start serve --name vite-app -- -s dist -l 80 -n 0.0.0.0
               pm2 save
