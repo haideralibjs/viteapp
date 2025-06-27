@@ -71,5 +71,7 @@ jobs:
               cd ${{ env.DEPLOY_PATH }}
               npm run build > /dev/null
               npm install -g serve
-              npm install -g pm2
-              serve -s dist -l 3000
+              npm install -g serve pm2
+              pm2 delete vite-app || true  
+              pm2 start serve --name vite-app -- -s dist -l 3000
+              pm2 save
