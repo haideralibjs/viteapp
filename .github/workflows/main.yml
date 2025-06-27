@@ -32,3 +32,13 @@ jobs:
           script: |
             echo "SSH connection successful"
             whoami
+
+      - name: Create target directory  
+        uses: appleboy/ssh-action@master  
+        with:  
+          host: ${{ secrets.EC2_HOST }}  
+          username: ${{ secrets.EC2_USERNAME }}  
+          key: ${{ secrets.EC2_PRIVATE_KEY }}  
+          script: |  
+            sudo mkdir -p ${{ env.DEPLOY_PATH }} 
+            sudo chown -R ${{ secrets.EC2_USERNAME }}:${{ secrets.EC2_USERNAME }} ${{ env.DEPLOY_PATH }}
