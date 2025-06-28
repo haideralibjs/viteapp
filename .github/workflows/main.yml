@@ -73,6 +73,4 @@ jobs:
               cd dist
               ls -la
               npm install -g serve pm2  > /dev/null
-              pm2 delete vite-app || true  
-              pm2 start "npx serve -s dist -l 3000" --name vite-app
-              pm2 save
+              npm start preview --host
