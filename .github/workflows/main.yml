@@ -68,8 +68,8 @@ jobs:
               [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
               [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
               nvm install v23
-              npm install
               cd ${{ env.DEPLOY_PATH }}
+              npm install
               npm run build > /dev/null
               cd dist
               ls -la
