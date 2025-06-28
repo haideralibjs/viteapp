@@ -1,0 +1,19 @@
+name: Self-Hosted Runner Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Echo a Message
+        run: |
+          echo "✅ Hello from self-hosted runner!"
+          echo "This is your own machine executing this job."
+
