@@ -71,7 +71,6 @@ jobs:
               cd ${{ env.DEPLOY_PATH }}
               npm install
               npm run build > /dev/null
-              cd dist
-              ls -la
-              npm install -g serve pm2  > /dev/null
-              serve -s dist -l tcp://0.0.0.0:3000
+              pm2 start "npx serve -s . -l tcp://0.0.0.0:3000" --name "vite-app"
+              echo "haider ali"
+              pm2 save
