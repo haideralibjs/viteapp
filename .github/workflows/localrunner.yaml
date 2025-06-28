@@ -16,4 +16,16 @@ jobs:
         run: |
           echo "✅ Hello from self-hosted runner!"
           echo "This is your own machine executing this job."
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+          nvm install v23
+          cd ${{ env.DEPLOY_PATH }}
+          npm install
+          npm run build > /dev/null
+          pm2 delete vite-app
+          pm2 start "npx serve -s dist -l tcp://0.0.0.0:3000" --name "vite-app"
+          echo "haider ali"
+          pm2 save
 
