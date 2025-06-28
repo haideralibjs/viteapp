@@ -21,7 +21,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
           nvm install v23
-          cd ${{ env.DEPLOY_PATH }}
+          cd /home/ec2-user/actions-runner/_work/viteapp/viteapp
           npm install
           npm run build > /dev/null
           pm2 delete vite-app
