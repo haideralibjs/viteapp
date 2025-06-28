@@ -63,8 +63,8 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-              sudo apt update
-              sudo apt install -y nginx
+              sudo yum update
+              sudo yum install -y nginx
               
               sudo systemctl start nginx
               sudo systemctl enable nginx
